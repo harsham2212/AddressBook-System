@@ -35,5 +35,17 @@ namespace AddressBook_System
                 }
             }
         }
+
+        internal void DeleteContact(string user)
+        {
+            ContactManager delete = new ContactManager();
+            foreach (var contact in addressList)
+            {
+                if (contact.FirstName == user || contact.LastName == user)
+                {
+                    addressList.Remove(contact);
+                }
+            }
+        }
     }
 }
