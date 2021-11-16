@@ -7,11 +7,11 @@ namespace AddressBook_System
     class NewContact
     {
         List<ContactManager> addressList = new List<ContactManager>();
-        public void AddContact(ContactManager contact) // This Method Will Add the Details of Customer
+        public void AddContact(ContactManager contact)
         {
             addressList.Add(contact);
         }
-        public void Display() // This Method wii Display the Details
+        public void Display()
         {
             foreach (var contact in addressList)
             {
