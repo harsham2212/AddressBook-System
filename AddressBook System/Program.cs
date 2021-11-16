@@ -1,5 +1,4 @@
-﻿using Address_Book;
-using System;
+﻿using System;
 
 namespace AddressBook_System
 {
@@ -11,13 +10,13 @@ namespace AddressBook_System
                 while (flag)
                 {
                     Console.WriteLine("Welcome to AddressBook Program");
-                    Console.WriteLine("Enter options : \n 1. Create Contacts \n 2. Exit");
+                    Console.WriteLine("Enter options : \n 1. Create Contacts \n 2. Add New Contact  \n 3. Exit");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
                         case 1:
                             Console.WriteLine("Enter the Contact details of FirstName, LastName, Address, City, State, Zip, Ph.no, Email");
-                            ContactManager contact = new ContactManager()
+                            ContactManager newcontact = new ContactManager()
                             {
                                 FirstName = Console.ReadLine(),
                                 LastName = Console.ReadLine(),
@@ -30,6 +29,22 @@ namespace AddressBook_System
                             };
                             break;
                         case 2:
+                        Console.WriteLine("Enter the Contact to be Add : FirstName, LastName, Addr, City, State, Zip, Ph.No, Email.");
+                        Console.WriteLine("Enter the Contact to be Add: ");
+                        ContactManager contact = new ContactManager();
+                        NewContact addressBook = new NewContact();
+                        addressBook.AddContact(contact);
+                        contact.FirstName = Console.ReadLine();
+                        contact.LastName = Console.ReadLine();
+                        contact.Address = Console.ReadLine();
+                        contact.City = Console.ReadLine();
+                        contact.State = Console.ReadLine();
+                        contact.Zip = Console.ReadLine();
+                        contact.PhoneNumber = Console.ReadLine();
+                        contact.Email = Console.ReadLine();
+                        addressBook.Display();
+                        break;
+                        case 3:
                             flag = false;
                             break;
                     }
