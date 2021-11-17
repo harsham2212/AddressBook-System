@@ -7,6 +7,7 @@ namespace AddressBook_System
     class NewContact
     {
         List<ContactManager> addressList = new List<ContactManager>();
+        Dictionary<string, List<ContactManager>> dict = new Dictionary<string, List<ContactManager>>();
         public void AddContact(ContactManager contact)
         {
             addressList.Add(contact);
@@ -47,5 +48,32 @@ namespace AddressBook_System
                 }
             }
         }
+        public void AddUniqueContact(string nam)
+        {
+            foreach (var contact in addressList)
+            {
+                if (addressList.Contains(contact))
+                {
+                    string uniqueName = Console.ReadLine();
+                    dict.Add(uniqueName, addressList);
+                }
+            }
+        }
+        public void DisplayUniqueContacts()
+        {
+            Console.WriteLine("Enter name display that contact details");
+            string name = Console.ReadLine().ToLower();
+            foreach (var contacts in dict)
+            {
+                if (contacts.Key == name)
+                {
+                    foreach (var data in contacts.Value)
+                    {
+                        Console.WriteLine("The Contact of " + data.FirstName + " Details are\n:" + data.FirstName + " " + data.LastName + " " + data.Address + " " + data.City + " " + data.State + " " + data.Zip + " " + data.PhoneNumber + " " + data.Email);
+                    }
+                }
+            }
+        }
     }
 }
+
