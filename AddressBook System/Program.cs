@@ -10,7 +10,9 @@ namespace AddressBook_System
                 while (flag)
                 {
                     Console.WriteLine("Welcome to AddressBook Program");
-                    Console.WriteLine("Enter options : \n 1. Create Contacts \n 2. Add New Contact \n 3. Edit Contact \n 4. Delete Contact \n 5. Add Multiple Contact \n 6. Refactor Code \n 7.Check Duplicates Name\n 8.Search Person using State or City\n 9.View by State or City\n 10. Exit");
+                    Console.WriteLine("Enter options : \n 1. Create Contacts \n 2. Add New Contact \n 3. Edit Contact \n 4. Delete Contact \n " +
+                        "5. Add Multiple Contact \n 6. Refactor Code \n 7.Check Duplicates Name\n 8.Search Person using State or City\n " +
+                        "9.View by State or City\n 10. Count By State or City\n 11. Exit");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -105,6 +107,20 @@ namespace AddressBook_System
                         View.View_person_city_state();
                         break;
                     case 10:
+                        Console.WriteLine("Select the options to Check\n 1. CityCount \n 2. StateCount");
+                        int num = Convert.ToInt32(Console.ReadLine());
+                        if (num == 1)
+                        {
+                            NewContact addressBookk = new NewContact();
+                            addressBookk.CityCount();
+                        }
+                        if (num == 2)
+                        {
+                            NewContact addreSsBook = new NewContact();
+                            addreSsBook.StateCount();
+                        }
+                        break;
+                    case 11:
                         flag = false;
                             break;
                     }
