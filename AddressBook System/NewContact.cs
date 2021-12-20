@@ -74,21 +74,42 @@ namespace AddressBook_System
                 }
             }
         }
-            public static void CheckDuplicateEntry(List<ContactManager> contacts, ContactManager contactBook)  // It Will Check For Duplicate Entry
+            public void CheckDuplicateEntry()  //  It Will Check For Duplicate Entry
             {
-                foreach (var Details in contacts)
-                {
-                    var person = contacts.Find(e => e.FirstName.Equals(contactBook.FirstName));
-                    if (person != null)
-                    {
-                        Console.WriteLine("This Contact Already Exists Withe Same First Name: " + contactBook.FirstName);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Continue with Other");
-                    }
-                }
+                Console.WriteLine("Enter the Name to Check whether the name is Duplicate or not");
+                string checkD = Console.ReadLine();
+                var person = addressList.Find(e => e.FirstName.Equals(checkD));
+            if (person == null)
+            {
+                Console.WriteLine("The Name you are trying to check is Not in the Address Book");
+            }
+            else
+            {
+                Console.WriteLine("Error occured ! The Name : {0}, is already Exists in Address Book", checkD);
+            }
+        }
+
+        public void PersonInCity()
+        {
+            Console.WriteLine("Enter the City name to Check Persons");
+            string City = Console.ReadLine();
+            List<ContactManager> cityList = addressList.FindAll(e => e.City == City);
+            foreach (var place in cityList)
+            {
+                Console.WriteLine("Found person {0} {1} in the Address Book, living in the City {2}", place.FirstName, place.LastName, place.City);
+            }
+        }
+
+        public void ForState()
+        {
+            Console.WriteLine("Enter the State name to check Persons");
+            string state = Console.ReadLine();
+            List<ContactManager> stateList = addressList.FindAll(e => e.State == state);
+            foreach (var sta in stateList)
+            {
+                Console.WriteLine("Found the name of {0} {1} in the Address Book, living in the City {2}", sta.FirstName, sta.LastName, sta.State);
             }
         }
     }
+ }
 
