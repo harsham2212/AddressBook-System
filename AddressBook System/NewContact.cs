@@ -74,6 +74,21 @@ namespace AddressBook_System
                 }
             }
         }
+            public static void CheckDuplicateEntry(List<ContactManager> contacts, ContactManager contactBook)  // It Will Check For Duplicate Entry
+            {
+                foreach (var Details in contacts)
+                {
+                    var person = contacts.Find(e => e.FirstName.Equals(contactBook.FirstName));
+                    if (person != null)
+                    {
+                        Console.WriteLine("This Contact Already Exists Withe Same First Name: " + contactBook.FirstName);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Continue with Other");
+                    }
+                }
+            }
+        }
     }
-}
 
