@@ -6,7 +6,7 @@ namespace AddressBook_System
 {
     class ContactManager
     {
-        //List<ContactManager> addressList = new List<ContactManager>();
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

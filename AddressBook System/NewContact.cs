@@ -110,6 +110,34 @@ namespace AddressBook_System
                 Console.WriteLine("Found the name of {0} {1} in the Address Book, living in the City {2}", sta.FirstName, sta.LastName, sta.State);
             }
         }
-    }
+
+        public void View_person_city_state()
+        {
+            Console.WriteLine("Enter your Choice for Searching a Person in");
+            Console.WriteLine("\n1.City \n2.State");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                    Console.WriteLine("Enter City Name:");
+                    String City = Console.ReadLine();
+
+                    foreach (ContactManager data in this.addressList.FindAll(e => e.City == City))
+                    {
+                        Console.WriteLine(data.FirstName + " " + data.LastName + " is from " + data.City);
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter State Name:");
+                    String State = Console.ReadLine();
+
+                    foreach (ContactManager data in this.addressList.FindAll(e => e.State == State))
+                    {
+                        Console.WriteLine(data.FirstName + " " + data.LastName + " is from " + data.State);
+                    }
+                    break;
+            }
+        }
+     }
  }
 
