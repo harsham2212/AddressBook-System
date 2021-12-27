@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace AddressBook_System
 {
-    class NewContact
+     class NewContact
     {
         List<ContactManager> addressList = new List<ContactManager>();
         Dictionary<string, List<ContactManager>> dict = new Dictionary<string, List<ContactManager>>();
@@ -153,6 +154,22 @@ namespace AddressBook_System
             string state = Console.ReadLine();
             List<ContactManager> stateList = addressList.FindAll(e => e.State == state);
             Console.WriteLine("The number of contact persons in the state {0} are {1}", state, stateList.Count());
+        }
+
+        public void AddressBookSorting()
+        {
+            Console.WriteLine("Enter the Address Book name that you want to sort : ");
+            string addressBookName = Console.ReadLine();
+            if (dict.ContainsKey(addressBookName))
+            {
+                dict[addressBookName].Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
+                Console.WriteLine("After Sorting alphabetically, The Address Book is arranged as : ");
+                Display();
+            }
+            else
+            {
+                Console.WriteLine("The {0} Addressbook does not exist. Please Enter a Valid Addressbook Name. ", addressBookName);
+            }
         }
     }
  }
