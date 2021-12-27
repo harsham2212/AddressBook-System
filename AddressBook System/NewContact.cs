@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,7 @@ namespace AddressBook_System
     class NewContact
     {
         List<ContactManager> addressList = new List<ContactManager>();
-        Dictionary<string, List<ContactManager>> dict = new Dictionary<string, List<ContactManager>>();
+        public Dictionary<string, List<ContactManager>> dict = new Dictionary<string, List<ContactManager>>();
         public void AddContact(ContactManager contact)
         {
             addressList.Add(contact);
@@ -215,6 +217,26 @@ namespace AddressBook_System
             writer.WriteLine("\nAlternative Number : 7903526036");
             writer.Close();
             Console.WriteLine(File.ReadAllText(filePath));
+        }
+
+        public static void ImplementAddressBookinCsv()
+        {
+
+            string importFilePath = @"E:\BridgeLAbz\Git\AddressBook-System\AddressBook System\File2\info.csv"; // Initialization
+            string exportFilePath = @"E:\BridgeLAbz\Git\AddressBook-System\AddressBook System\File2\export.csv";
+
+            using var reader = new StreamReader(importFilePath); // Readaing CSV File
+            using var csv = new CsvReader(reader, CultureInfo.CurrentCulture);
+            var records = csv.GetRecords<ContactManager>().ToList();
+            foreach (var addressData in records)
+            {
+                Console.Write("\t" + addressData.FirstName + "\t" + addressData.LastName + "\t" +
+                   addressData.Address + "\t" + addressData.City + "\t" + addressData.State + "\t" + addressData.Zip + "\t" + addressData.PhoneNumber + "\t" + addressData.Email);
+            }
+
+            using var writer = new StreamWriter(exportFilePath); // Writing CSV File
+            using var csvExport = new CsvWriter(writer, CultureInfo.CurrentCulture);
+            csvExport.WriteRecords(records);
         }
     }
 }
