@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -237,6 +238,24 @@ namespace AddressBook_System
             using var writer = new StreamWriter(exportFilePath); // Writing CSV File
             using var csvExport = new CsvWriter(writer, CultureInfo.CurrentCulture);
             csvExport.WriteRecords(records);
+        }
+
+        public static void ImplementAddressBookinJson()
+        {
+            string importFilePath = @"E:\BridgeLAbz\Git\AddressBook-System\AddressBook System\json file\Information.json";
+            string exportFilePath = @"E:\BridgeLAbz\Git\AddressBook-System\AddressBook System\json file\exportInformation.json";
+            using StreamReader reader = new StreamReader(importFilePath);
+            var json = reader.ReadToEnd();
+            var data = JsonConvert.DeserializeObject<List<ContactManager>>(json);
+            foreach (var addressData in data)
+            {
+                Console.Write("\t" + addressData.FirstName + "\t" + addressData.LastName + "\t" +
+                   addressData.Address + "\t" + addressData.City + "\t" + addressData.State + "\t" + addressData.Zip);
+            }
+            JsonSerializer serializer = new JsonSerializer();
+            using StreamWriter sw = new StreamWriter(exportFilePath);
+            using JsonWriter writer = new JsonTextWriter(sw);
+            serializer.Serialize(writer, data);
         }
     }
 }
