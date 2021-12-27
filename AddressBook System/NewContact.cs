@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace AddressBook_System
 {
-     class NewContact
+    class NewContact
     {
         List<ContactManager> addressList = new List<ContactManager>();
         Dictionary<string, List<ContactManager>> dict = new Dictionary<string, List<ContactManager>>();
@@ -76,11 +77,11 @@ namespace AddressBook_System
                 }
             }
         }
-            public void CheckDuplicateEntry()  //  It Will Check For Duplicate Entry
-            {
-                Console.WriteLine("Enter the Name to Check whether the name is Duplicate or not");
-                string checkD = Console.ReadLine();
-                var person = addressList.Find(e => e.FirstName.Equals(checkD));
+        public void CheckDuplicateEntry()  //  It Will Check For Duplicate Entry
+        {
+            Console.WriteLine("Enter the Name to Check whether the name is Duplicate or not");
+            string checkD = Console.ReadLine();
+            var person = addressList.Find(e => e.FirstName.Equals(checkD));
             if (person == null)
             {
                 Console.WriteLine("The Name you are trying to check is Not in the Address Book");
@@ -173,30 +174,49 @@ namespace AddressBook_System
         }
 
         public void Sorting()
-         
+
         {
-          Console.WriteLine("Enter the Address Book name that you want to sort : ");
-          string addressBookName = Console.ReadLine();
-          Console.WriteLine("How do you want the Sort the Addressbook : \n 1. Sort based on City \n 2. Sort based on State \n 3. Sort based on Zip");
-          int option = Convert.ToInt32(Console.ReadLine());
-           switch (option)
-              {
-                  case 1:
-                         dict[addressBookName].Sort((x, y) => x.City.CompareTo(y.City));
-                          Console.WriteLine("After Sorting alphabetically, The Address Book is arranged as : ");
-                          Display();
-                          break;
-                  case 2:
-                          dict[addressBookName].Sort((x, y) => x.State.CompareTo(y.State));
-                          Console.WriteLine("After Sorting alphabetically, The Address Book is arranged as : ");
-                          Display();
-                          break;
-                  case 3:
-                          dict[addressBookName].Sort((x, y) => x.Zip.CompareTo(y.Zip));
-                          Console.WriteLine("After Sorting alphabetically, The Address Book is arranged as : ");
-                          Display();
-                          break;
-               }
-          }
-     }
+            Console.WriteLine("Enter the Address Book name that you want to sort : ");
+            string addressBookName = Console.ReadLine();
+            Console.WriteLine("How do you want the Sort the Addressbook : \n 1. Sort based on City \n 2. Sort based on State \n 3. Sort based on Zip");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                    dict[addressBookName].Sort((x, y) => x.City.CompareTo(y.City));
+                    Console.WriteLine("After Sorting alphabetically, The Address Book is arranged as : ");
+                    Display();
+                    break;
+                case 2:
+                    dict[addressBookName].Sort((x, y) => x.State.CompareTo(y.State));
+                    Console.WriteLine("After Sorting alphabetically, The Address Book is arranged as : ");
+                    Display();
+                    break;
+                case 3:
+                    dict[addressBookName].Sort((x, y) => x.Zip.CompareTo(y.Zip));
+                    Console.WriteLine("After Sorting alphabetically, The Address Book is arranged as : ");
+                    Display();
+                    break;
+            }
+        }
+
+        public void ReadFile()
+        {
+            Console.WriteLine("The Contact details in the file after reading : \n ");
+            string filePath = @"E:\BridgeLAbz\Git\AddressBook-System\AddressBook System\File\File.txt";
+            string text = File.ReadAllText(filePath);
+            Console.WriteLine(text);
+        }
+        public void WritingUsingStreamWriter()
+        {
+            Console.WriteLine("\n The Contact details in the file after writing : ");
+            String filePath = @"E:\BridgeLAbz\Git\AddressBook-System\AddressBook System\File\File.txt";
+            using StreamWriter writer = File.AppendText(filePath);
+            writer.WriteLine("\nAlternative Number : 7903526036");
+            writer.Close();
+            Console.WriteLine(File.ReadAllText(filePath));
+        }
+    }
 }
+
+

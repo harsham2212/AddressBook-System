@@ -12,7 +12,8 @@ namespace AddressBook_System
                     Console.WriteLine("Welcome to AddressBook Program");
                     Console.WriteLine("Enter options : \n 1. Create Contacts \n 2. Add New Contact \n 3. Edit Contact \n 4. Delete Contact \n " +
                         "5. Add Multiple Contact \n 6. Refactor Code \n 7.Check Duplicates Name\n 8.Search Person using State or City\n " +
-                        "9.View by State or City\n 10. Count By State or City\n 11. AddressBook Sorting\n 12. Sorting entries by City, State or Zipcode \n 13. Exit");
+                        "9.View by State or City\n 10. Count By State or City\n 11. AddressBook Sorting\n 12. Sorting entries by City, State or Zipcode \n " +
+                        "13. Read or Write in Address Book Using File I/O \n 14. Exit");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -129,6 +130,11 @@ namespace AddressBook_System
                         sortbysate.Sorting();
                         break;
                     case 13:
+                        NewContact read = new NewContact();
+                        read.ReadFile();
+                        read.WritingUsingStreamWriter();
+                        break;
+                    case 14:
                         flag = false;
                             break;
                     }
